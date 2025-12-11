@@ -1,7 +1,7 @@
 # DevOps Project Report: Automated CI/CD Pipeline for a 2-Tier Flask Application on AWS
 
-**Author:** Prashant Gohel
-**Date:** August 23, 2025
+**Author:** Yash Ambaskar
+**Date:** December 11, 2025
 
 ---
 
@@ -115,15 +115,22 @@ This document outlines the step-by-step process for deploying a 2-tier web appli
 
 1.  **Install Java (OpenJDK 17):**
     ```bash
-    sudo apt install openjdk-17-jdk -y
+    sudo apt update
+    sudo apt install fontconfig openjdk-21-jre
+    java -version
     ```
 
 2.  **Add Jenkins Repository and Install:**
     ```bash
-    curl -fsSL [https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key](https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key) | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
-    echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] [https://pkg.jenkins.io/debian-stable](https://pkg.jenkins.io/debian-stable) binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+    sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc \
+    https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+    echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc]" \
+    https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+    /etc/apt/sources.list.d/jenkins.list > /dev/null
+
     sudo apt update
-    sudo apt install jenkins -y
+    
+    sudo apt install jenkins
     ```
 
 3.  **Start and Enable Jenkins Service:**
