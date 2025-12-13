@@ -5,6 +5,11 @@
 
 ---
 
+## Jenkins Build Status
+
+![Build Status](http://35.154.118.109:8080/buildStatus/icon?job=two-tier-project)
+
+
 ### **Table of Contents**
 1. [Project Overview](#1-project-overview)
 2. [Architecture Diagram](#2-architecture-diagram)

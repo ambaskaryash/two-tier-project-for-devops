@@ -1,4 +1,4 @@
-Flask
-Flask-MySQLdb
-requests
-Werkzeug
+Flask==3.0.2
+Flask-MySQLdb==2.0.0
+Werkzeug==3.0.1
+requests==2.32.3

@@ -1,439 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Yash Ambaskar — DevOps Portfolio</title>
+  <meta charset="UTF-8" />
+  <title>DevOps Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* -------------------------
-       Theme variables (dark-first)
-       ------------------------- */
-    :root {
-      --bg-1: #06070a;
-      --bg-2: #0f1220;
-      --accent-1: #4c8dff;
-      --accent-2: #6ff0c7;
-      --glass: rgba(255,255,255,0.04);
-      --muted: #9aa3bf;
-      --text: #e6eef8;
-      --card-border: rgba(255,255,255,0.06);
-      --radius: 14px;
-      --shadow: 0 12px 40px rgba(2,6,23,0.7);
-      --container-max: 1150px;
-    }
-
-    /* Light theme override (safe colors) */
-    [data-theme="light"]{
-      --bg-1: #f5f7fb;
-      --bg-2: #eef2f8;
-      --glass: rgba(2,6,23,0.03);
-      --text: #0b1220;
-      --muted: #475569;
-      --card-border: rgba(2,6,23,0.06);
-      --shadow: 0 10px 30px rgba(12,18,30,0.06);
-    }
-
-    /* Reset + base */
-    * { box-sizing: border-box; }
-    html,body { height:100%; }
     body {
-      margin:0;
-      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      color:var(--text);
-      background: radial-gradient(800px 350px at 10% 20%, rgba(76,141,255,0.045), transparent 6%),
-                  linear-gradient(120deg, var(--bg-1), var(--bg-2));
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:28px;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #0b0f19;
+      color: #eaeaf0;
     }
 
-    /* Subtle animated gradient */
-    .bg-animation {
-      position:fixed;
-      inset:0;
-      z-index:-2;
-      background:
-        radial-gradient(600px 400px at 85% 10%, rgba(111,240,199,0.035), transparent),
-        radial-gradient(500px 300px at 20% 80%, rgba(76,141,255,0.035), transparent);
-      pointer-events:none;
-      animation: floatBg 20s linear infinite;
-      opacity:0.9;
-    }
-    @keyframes floatBg {
-      0% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(20px) rotate(1deg); }
-      100% { transform: translateY(0px) rotate(0deg); }
+    header {
+      padding: 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #5b8cff, #7c4dff);
     }
 
-    /* Main container */
-    .container {
-      width:100%;
-      max-width:var(--container-max);
-      display:grid;
-      grid-template-columns: 360px 1fr;
-      gap:28px;
-      align-items:start;
-      z-index:1;
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
     }
 
-    /* PROFILE PANEL */
-    .profile-panel {
-      border-radius:var(--radius);
-      padding:22px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border:1px solid var(--card-border);
-      box-shadow: var(--shadow);
-      display:flex;
-      flex-direction:column;
-      gap:16px;
-      align-items:center;
-    }
-    .avatar {
-      width:180px; height:180px;
-      border-radius:50%;
-      overflow:hidden;
-      border: 6px solid rgba(76,141,255,0.12);
-      display:grid; place-items:center;
-      background: linear-gradient(135deg, rgba(76,141,255,0.06), rgba(111,240,199,0.03));
-      transition: transform .35s cubic-bezier(.2,.9,.3,1);
-    }
-    .avatar img { width:100%; height:100%; object-fit:cover; display:block; }
-    .avatar:hover{ transform: translateY(-8px) scale(1.02); }
-
-    .name {
-      font-size:1.2rem; font-weight:700; color:var(--accent-1);
-      text-align:center;
-    }
-    .subtitle { font-size:0.92rem; color:var(--muted); text-align:center; }
-
-    .profile-actions { width:100%; display:flex; gap:10px; justify-content:center; }
-    .btn {
-      padding:10px 12px; border-radius:10px; border:none; cursor:pointer;
-      font-weight:600; font-size:0.92rem;
-      background:linear-gradient(90deg,var(--accent-1), #417ad6);
-      color:white; box-shadow: 0 10px 30px rgba(65,122,214,0.08);
-      transition: transform .12s ease, box-shadow .12s ease;
-    }
-    .btn:active{ transform: translateY(1px); }
-    .btn.ghost {
-      background:transparent; color:var(--muted); border:1px solid var(--card-border);
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 40px;
     }
 
-    .stat-list { width:100%; display:flex; gap:10px; justify-content:space-between; margin-top:6px; }
-    .stat {
-      flex:1; text-align:center; padding:12px; border-radius:10px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
-      border:1px solid rgba(255,255,255,0.02);
-      color:var(--muted);
-    }
-    .stat b { display:block; margin-top:6px; color:var(--text); font-size:1.05rem; font-weight:700; }
-
-    .socials { display:flex; gap:8px; margin-top:8px; }
-    .socials a { display:inline-grid; place-items:center; width:44px; height:44px; border-radius:10px;
-      background: rgba(255,255,255,0.02); color:var(--muted); text-decoration:none; border:1px solid rgba(255,255,255,0.02);
-      transition: transform .12s ease, color .12s ease;
-    }
-    .socials a:hover { transform: translateY(-4px); color:var(--accent-1); }
-
-    /* MAIN PANEL */
-    .main-panel {
-      display:flex; flex-direction:column; gap:18px;
+    .card {
+      background: #12172a;
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
 
-    .hero {
-      padding:20px; border-radius:var(--radius);
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border:1px solid var(--card-border); box-shadow: var(--shadow);
-      display:flex; justify-content:space-between; gap:12px;
-      align-items:center;
+    .card img {
+      width: 100%;
+      border-radius: 10px;
     }
-    .hero-left { display:flex; flex-direction:column; gap:6px; }
-    .hero-title { font-size:1.6rem; font-weight:800; color:transparent; background: linear-gradient(90deg,var(--accent-1), var(--accent-2)); -webkit-background-clip:text; background-clip:text; }
-    .hero-sub { color:var(--muted); font-weight:500; }
 
-    .cta-row { display:flex; gap:10px; align-items:center; }
-    .chip { padding:8px 10px; border-radius:999px; background:rgba(255,255,255,0.02); color:var(--muted); font-weight:600; font-size:0.9rem; border:1px solid rgba(255,255,255,0.02); }
-
-    /* PROJECT / ABOUT CARD */
-    .card-grid { display:grid; grid-template-columns: 1fr 360px; gap:18px; }
-    .about, .projects, .messages-card {
-      border-radius:12px; padding:16px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border:1px solid var(--card-border);
+    .card h3 {
+      margin: 15px 0 5px;
     }
-    .about p { color:var(--muted); line-height:1.5; margin-top:10px; }
 
-    .project-list { display:flex; flex-direction:column; gap:10px; margin-top:8px; }
-    .project {
-      display:flex; gap:12px; align-items:center; padding:10px; border-radius:10px; background: rgba(255,255,255,0.01);
-      transition: transform .12s ease, box-shadow .12s ease;
+    .card p {
+      margin: 0 0 15px;
+      color: #b5b8ff;
     }
-    .project:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(2,6,23,0.35); }
 
-    .project .dot { width:10px; height:10px; border-radius:50%; background:var(--accent-1); margin-left:8px; }
-
-    /* SKILLS - animated bars */
-    .skills { display:flex; gap:12px; margin-top:10px; flex-wrap:wrap; }
-    .skill {
-      flex-basis: calc(50% - 6px);
-      min-width:160px;
+    button {
+      background: linear-gradient(135deg, #5b8cff, #7c4dff);
+      border: none;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
     }
-    .skill .label { font-size:0.86rem; color:var(--muted); margin-bottom:6px; }
-    .bar {
-      height:10px; border-radius:999px; background:rgba(255,255,255,0.03); overflow:hidden;
-      border:1px solid rgba(255,255,255,0.02);
+
+    button:hover {
+      opacity: 0.9;
     }
-    .bar > i { display:block; height:100%; width:0%; background:linear-gradient(90deg,var(--accent-1), var(--accent-2)); border-radius:999px; transition: width 900ms cubic-bezier(.2,.9,.3,1); }
 
-    /* MESSAGES */
-    .messages-card { display:flex; flex-direction:column; gap:12px; }
-    .messages-list { max-height:260px; overflow:auto; padding:8px; border-radius:10px; background: rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.02); }
-    .messages-list p { margin:8px 0; padding:10px 12px; border-radius:10px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); color:var(--text); }
-
-    .message-form { display:flex; gap:10px; margin-top:6px; }
-    .input, textarea {
-      padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.04);
-      background: rgba(255,255,255,0.02); color:var(--text); outline:none; font-size:0.95rem;
-    }
-    .input::placeholder { color: rgba(230,238,248,0.5); }
-    textarea { min-height:64px; resize:vertical; }
-
-    /* FOOTER / NOTES */
-    .meta { color:var(--muted); font-size:0.9rem; margin-top:6px; }
-
-    /* responsive */
-    @media (max-width:1100px){
-      .container { grid-template-columns: 1fr; }
-      .card-grid { grid-template-columns: 1fr; }
-      .profile-panel { flex-direction:row; align-items:center; gap:14px; padding:14px; }
-      .avatar { width:96px; height:96px; border-width:4px; }
-      .name { font-size:1rem; }
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #888;
     }
   </style>
 </head>
 <body>
-  <div class="bg-animation" aria-hidden="true"></div>
 
-  <div class="container" role="main" aria-label="Yash Ambaskar portfolio">
-    <!-- LEFT: profile -->
-    <aside class="profile-panel" aria-label="Profile panel">
-      <div class="avatar" aria-hidden="true">
-        <!-- Replace logo.svg with your image -->
-        <img src="logo.svg" alt="Yash Ambaskar">
-      </div>
+<header>
+  <h1>🛒 DevOps Demo Store</h1>
+  <p>Two-Tier Flask + MySQL E-commerce Application</p>
+</header>
 
-      <div style="flex:1; display:flex; flex-direction:column; gap:6px; align-items:center;">
-        <div class="name">Yash Ambaskar</div>
-        <div class="subtitle">Student · Cloud & DevOps Engineer</div>
-
-        <div class="profile-actions" role="group" aria-label="Profile actions">
-          <button class="btn" id="resumeBtn">Resume</button>
-          <button class="btn ghost" id="themeToggle" title="Toggle light/dark">Theme</button>
-        </div>
-
-        <div class="stat-list" aria-hidden="true">
-          <div class="stat">Projects <b>12</b></div>
-          <div class="stat">CI/CD <b>Jenkins</b></div>
-        </div>
-
-        <div class="socials" role="navigation" aria-label="Social links">
-          <a href="#" title="GitHub" aria-label="GitHub">
-            <!-- GitHub SVG -->
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 .5C5.73.5.76 5.47.76 11.74c0 4.89 3.16 9.02 7.55 10.48.55.1.75-.24.75-.53v-1.86c-3.07.67-3.72-1.48-3.72-1.48-.5-1.28-1.22-1.62-1.22-1.62-.99-.67.08-.66.08-.66 1.1.08 1.68 1.14 1.68 1.14.97 1.66 2.55 1.18 3.18.9.1-.7.38-1.18.7-1.45-2.45-.28-5.02-1.23-5.02-5.48 0-1.21.43-2.2 1.14-2.98-.11-.28-.5-1.4.11-2.92 0 0 .93-.3 3.05 1.14a10.56 10.56 0 0 1 5.56 0c2.12-1.44 3.05-1.14 3.05-1.14.61 1.52.22 2.64.11 2.92.71.78 1.14 1.77 1.14 2.98 0 4.26-2.58 5.2-5.04 5.47.39.33.73.98.73 1.99v2.95c0 .29.2.64.76.53 4.39-1.46 7.55-5.59 7.55-10.48C23.24 5.47 18.27.5 12 .5z" fill="currentColor"/>
-            </svg>
-          </a>
-          <a href="#" title="LinkedIn" aria-label="LinkedIn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M4.98 3.5C4.98 5 3.8 6.2 2.3 6.2 0.8 6.2-.38 5-0.38 3.5-.38 2 0.8 .8 2.3 .8 3.8 .8 4.98 2 4.98 3.5zM.1 8.94h4.4V23H.1V8.94zM9 8.94h4.22v1.92h.06c.59-1.12 2.04-2.3 4.2-2.3 4.49 0 5.31 2.96 5.31 6.81V23h-4.4v-6.6c0-1.57 0-3.6-2.19-3.6-2.19 0-2.53 1.72-2.53 3.48V23H9V8.94z" fill="currentColor"/>
-            </svg>
-          </a>
-          <a href="#" title="Portfolio" aria-label="Portfolio">Web</a>
-        </div>
-      </div>
-    </aside>
-
-    <!-- RIGHT: main content -->
-    <main class="main-panel" aria-live="polite">
-      <header class="hero" role="banner" aria-labelledby="hero-title">
-        <div class="hero-left">
-          <div id="hero-title" class="hero-title">Yash Ambaskar</div>
-          <div class="hero-sub">DevOps • Cloud • Containers • CI/CD</div>
-          <div class="meta" style="margin-top:8px">Two-tier Flask + MySQL app deployed on AWS EC2 with Docker Compose and Jenkins CI/CD.</div>
-        </div>
-
-        <div class="cta-row" role="region" aria-label="Quick actions">
-          <div class="chip">Available for internships</div>
-          <button class="btn" id="contactBtn">Message</button>
-        </div>
-      </header>
-
-      <section class="card-grid" aria-label="Projects and messages">
-        <div>
-          <div class="about" aria-labelledby="about-title">
-            <div id="about-title" style="font-weight:700; margin-bottom:6px">About this project</div>
-            <p>
-              This page is a compact portfolio overview that highlights your infrastructure & CI/CD experience. It uses modern UI patterns: soft glass cards, animated accents, and small interactive elements for skills and messaging. It is demo project for students.
-            </p>
-
-            <div style="margin-top:12px; font-weight:700">Key projects</div>
-            <div class="project-list" aria-hidden="false">
-              <div class="project">
-                <div style="flex:1">
-                  <div style="font-weight:700">Two-tier Flask app on AWS</div>
-                  <div style="color:var(--muted); font-size:0.92rem">Docker Compose, MySQL, EC2, Jenkins CI/CD</div>
-                </div>
-                <div class="dot" aria-hidden="true"></div>
-              </div>
-
-              <div class="project">
-                <div style="flex:1">
-                  <div style="font-weight:700">CI/CD Pipelines</div>
-                  <div style="color:var(--muted); font-size:0.92rem">Automated builds & deployments using Jenkins and Docker</div>
-                </div>
-                <div class="dot" aria-hidden="true"></div>
-              </div>
-            </div>
-
-            <div style="margin-top:12px; font-weight:700">Skills</div>
-            <div class="skills" aria-hidden="false">
-              <div class="skill"><div class="label">Docker</div><div class="bar"><i data-value="92"></i></div></div>
-              <div class="skill"><div class="label">AWS / EC2</div><div class="bar"><i data-value="80"></i></div></div>
-              <div class="skill"><div class="label">Jenkins CI</div><div class="bar"><i data-value="85"></i></div></div>
-              <div class="skill"><div class="label">Flask / Python</div><div class="bar"><i data-value="78"></i></div></div>
-            </div>
-          </div>
-
-          <div class="projects" style="margin-top:12px">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <div style="font-weight:700">More Projects</div>
-              <div style="color:var(--muted); font-size:0.9rem">Portfolio • GitHub</div>
-            </div>
-
-            <div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap">
-              <div class="chip">Logging & monitoring</div>
-              <div class="chip">Infra as Code</div>
-              <div class="chip">Automation</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- RIGHT column: messages -->
-        <aside class="messages-card" aria-labelledby="messages-title">
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <div id="messages-title" style="font-weight:700">Messages</div>
-            <div style="color:var(--muted); font-size:0.9rem">Live</div>
-          </div>
-
-          <div class="messages-list" id="messages" role="log" aria-live="polite" aria-atomic="false">
-            <!-- Preserve server-side Jinja render -->
-            {% for message in messages %}
-              <p>{{ message[0] }}</p>
-            {% endfor %}
-          </div>
-
-          <form id="messageForm" class="message-form" aria-label="Send a message" autocomplete="off">
-            <input class="input" id="msgInput" name="new_message" type="text" placeholder="Write a short message..." required aria-required="true">
-            <button class="btn" type="submit">Send</button>
-          </form>
-
-          <div class="meta">Posts are sent to <code>/submit</code>. The client will optimistically display messages if server does not respond.</div>
-        </aside>
-      </section>
-    </main>
+<section class="products">
+  {% for product in products %}
+  <div class="card">
+    <img src="{{ product.image }}" alt="{{ product.name }}">
+    <h3>{{ product.name }}</h3>
+    <p>₹{{ product.price }}</p>
+    <button onclick="order('{{ product.name }}')">Order Now</button>
   </div>
+  {% endfor %}
+</section>
 
-  <script>
-    // Theme toggle persisted
-    (function(){
-      const root = document.documentElement;
-      const tBtn = document.getElementById('themeToggle');
-      const saved = localStorage.getItem('theme');
-      if(saved === 'light') root.setAttribute('data-theme','light');
+<footer>
+  Built for DevOps CI/CD • Docker • Jenkins • MySQL
+</footer>
 
-      tBtn.addEventListener('click', () => {
-        const cur = root.getAttribute('data-theme');
-        if(cur === 'light') { root.removeAttribute('data-theme'); localStorage.setItem('theme', 'dark'); }
-        else { root.setAttribute('data-theme','light'); localStorage.setItem('theme', 'light'); }
-      });
-    })();
+<script>
+function order(product) {
+  const name = prompt("Enter your name to place order:");
+  if (!name) return;
 
-    // Animate skill bars on viewport load
-    (function(){
-      const bars = Array.from(document.querySelectorAll('.bar > i'));
-      function animateBars(){
-        bars.forEach(b => {
-          const v = parseInt(b.getAttribute('data-value') || '60', 10);
-          b.style.width = v + '%';
-        });
-      }
-      // small delay for nicer effect
-      window.addEventListener('load', () => setTimeout(animateBars, 400));
-    })();
+  fetch("/order", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({name: name, product: product})
+  })
+  .then(res => res.json())
+  .then(data => alert(data.message))
+  .catch(() => alert("Order failed"));
+}
+</script>
 
-    // Message form: optimistic UI + POST to /submit
-    (function(){
-      const form = document.getElementById('messageForm');
-      const input = document.getElementById('msgInput');
-      const container = document.getElementById('messages');
-
-      function append(text, note='') {
-        const p = document.createElement('p');
-        p.textContent = text + (note ? ' ' + note : '');
-        container.appendChild(p);
-        container.scrollTop = container.scrollHeight;
-      }
-
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const val = input.value.trim();
-        if(!val) return input.focus();
-
-        append(val + ' (sending...)');
-        input.value = '';
-        input.disabled = true;
-
-        try {
-          const resp = await fetch('/submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify({ new_message: val })
-          });
-
-          if(!resp.ok) {
-            append('[Server error — message not saved]');
-            console.warn('Server returned', resp.status);
-          } else {
-            // if server sends confirmation, you can parse it; otherwise show saved
-            try {
-              const data = await resp.json();
-              if(data && data.message) append('[Saved]');
-            } catch(e) { append('[Saved]'); }
-          }
-        } catch (err) {
-          append('[Offline: shown locally]');
-          console.warn('Network error', err);
-        } finally {
-          input.disabled = false;
-          input.focus();
-        }
-      });
-    })();
-
-    // Placeholder actions
-    document.getElementById('resumeBtn').addEventListener('click', (e) => {
-      e.preventDefault();
-      alert('Resume link not configured. Replace with real file URL.');
-    });
-    document.getElementById('contactBtn').addEventListener('click', () => {
-      document.getElementById('msgInput').focus();
-    });
-  </script>
 </body>
 </html>
