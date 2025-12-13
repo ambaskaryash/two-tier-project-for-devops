@@ -1,5 +1,10 @@
 pipeline {
     agent any
+
+    triggers {
+        githubPush()
+    }
+
     stages {
         stage('Clone Code') {
             steps {
